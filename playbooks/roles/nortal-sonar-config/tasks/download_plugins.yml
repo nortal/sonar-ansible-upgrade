@@ -1,0 +1,33 @@
+---
+
+## Download plugins
+
+- name: Download plugins from Bintray
+  get_url:
+    url="https://sonarsource.bintray.com/Distribution/{{ item.name }}/{{ item.name }}-{{ item.version }}.jar"
+    dest="{{ sonar_home }}/extensions/plugins/"
+  with_items:
+    - { name: 'sonar-checkstyle-plugin', version: '2.4'}
+    - { name: 'sonar-findbugs-plugin', version: '3.3'}
+    - { name: 'sonar-java-plugin', version: '3.12' }
+    - { name: 'sonar-javascript-plugin', version: '2.11'}
+    - { name: 'sonar-pmd-plugin', version: '2.5'}
+    - { name: 'sonar-scm-mercurial-plugin', version: '1.1.1'}
+
+- name: Download plugins from Sonarsource Downloads
+  get_url:
+    url="http://downloads.sonarsource.com/plugins/org/codehaus/sonar-plugins/{{ item.name }}/{{ item.version }}/{{ item.name }}-{{ item.version }}.jar"
+    dest="{{ sonar_home }}/extensions/plugins/"
+  with_items:
+    - { name: 'sonar-crowd-plugin', version: '2.0'}
+    - { name: 'sonar-googleanalytics-plugin', version: '1.1'}
+    - { name: 'sonar-jira-plugin', version: '1.2'}
+    - { name: 'sonar-scm-git-plugin', version: '1.1'}
+
+- name: Download extra plugins
+  get_url:
+    url="{{ item }}"
+    dest="{{ sonar_home }}/extensions/plugins/"
+  with_items:
+    - 'https://github.com/SonarQubeCommunity/sonar-build-breaker/releases/download/2.0/sonar-build-breaker-plugin-2.0.jar'
+

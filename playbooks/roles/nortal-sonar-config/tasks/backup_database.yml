@@ -1,0 +1,20 @@
+---
+## Install packages required for backup
+- name: Ensure packages for db dump are present
+  yum: name="{{ item }}" state=latest
+  with_items:
+    - MySQL-python
+    - mysql
+
+## Backup database
+- name: Create database dump
+  when: sonar_db_create_backup
+  mysql_db:
+    state=dump
+    login_host="{{ sonar_db_host }}"
+    login_port="{{ sonar_db_port }}"
+    login_user="{{ sonar_db_user }}"
+    login_password="{{ sonar_db_password }}"
+    name="{{ sonar_db_name }}"
+    encoding={{ sonar_db_encoding }}
+    target="{{ sonar_home_root }}/db_backup_{{ ansible_date_time.date }}_{{ ansible_date_time.hour }}_{{ ansible_date_time.minute }}.sql"

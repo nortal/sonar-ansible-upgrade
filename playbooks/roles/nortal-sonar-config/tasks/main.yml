@@ -1,0 +1,48 @@
+---
+- name: Create Sonar user
+  user: name={{sonar_user}}
+
+- yum: name="libselinux-python" state=latest
+
+- name: Ensure sonar home root is present
+  become_user: "{{ sonar_user }}"
+  file: path="{{ sonar_home_root }}" state="directory"
+
+## This is required for testing environments where no Sonar exists yet
+- stat: path={{ sonar_home_root }}/sonar.sh
+  register: sonar_sh_script
+
+- name: Ensure service script is present
+  when: sonar_sh_script.stat.exists == False
+  template: src=init_d_sonar_blank.sh dest=/etc/init.d/sonar mode="u=rwx,g=rx,o=rx" force=no
+
+- name: Ensure Sonar is stopped
+  service: name=sonar state=stopped
+
+## Download new version
+- name: Download new Sonarqube version
+  become_user: "{{ sonar_user }}"
+  get_url:
+    url="https://sonarsource.bintray.com/Distribution/sonarqube/sonarqube-{{ sonar_target_version }}.zip"
+    dest="{{ sonar_home_root }}/sonarqube-{{ sonar_target_version }}.zip"
+
+- unarchive: src="{{ sonar_home_root }}/sonarqube-{{ sonar_target_version }}.zip" dest={{ sonar_home_root }} copy=no
+
+- include: backup_database.yml
+
+- include: download_plugins.yml
+  become_user: "{{ sonar_user }}"
+
+- name: Apply sonar.properties config
+  template: src=sonar.properties dest={{ sonar_home }}/conf/sonar.properties owner="{{ sonar_user }}"
+
+- file: path={{ sonar_home }}/data/es state=absent
+
+- name: Reconfigure service script
+  template: src=init_d_sonar.sh dest=/etc/init.d/sonar mode="u=rwx,g=rx,o=rx"
+
+- name: Reconfigure init.d service script
+  template: src=sonar.sh dest={{ sonar_home_root }}/sonar.sh mode="u=rwx,g=rx,o=rx"
+
+- name: Ensure Sonar is started
+  service: name=sonar state=started

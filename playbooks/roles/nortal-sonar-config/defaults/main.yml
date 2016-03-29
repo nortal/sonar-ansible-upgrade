@@ -1,0 +1,6 @@
+---
+sonar_db_create_backup: true
+sonar_db_name: "sonar"
+sonar_db_port: "3306"
+sonar_db_encoding: "utf8"
+mysql_connector_version: "5.1.38"

@@ -1,0 +1,22 @@
+---
+
+- file: path="{{ sonar_home }}/extensions/jdbc-driver/mysql" state="directory" owner="{{ sonar_user }}"
+
+- name: Download mysql-java-connector
+  become_user: "{{ sonar_user }}"
+  get_url:
+    url="http://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-{{ mysql_connector_version }}.zip"
+    dest="{{ sonar_home_root }}/mysql-connector-java-{{ mysql_connector_version }}.zip"
+
+- unarchive:
+    src="{{ sonar_home_root }}/mysql-connector-java-{{ mysql_connector_version }}.zip"
+    dest="{{ sonar_home }}/extensions/jdbc-driver/mysql"
+    owner="{{ sonar_user }}"
+    copy=no
+
+- name: Provide MySQL driver
+  copy:
+    src=mysql-connector-java-5.1.26.jar
+    dest={{ sonar_home }}/extensions/jdbc-driver/mysql/mysql-connector-java-5.1.26.jar
+    owner="{{ sonar_user }}"
+    mode="u=rw,g=r,o=r"
