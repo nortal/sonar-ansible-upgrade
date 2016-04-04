@@ -1,6 +1,14 @@
 ---
+sonar_user: sonar
+# Root directory where different sonar installations should be placed.
+sonar_home_root: "/home/sonar"
+sonar_home: "{{ sonar_home_root }}/sonarqube-{{ sonar_target_version }}"
+
+# Should create database backup or not. Can disable for testing.
 sonar_db_create_backup: true
 sonar_db_name: "sonar"
 sonar_db_port: "3306"
 sonar_db_encoding: "utf8"
 mysql_connector_version: "5.1.38"
+
+sonar_plugins_url_file: "default-sonar-plugins.yml"

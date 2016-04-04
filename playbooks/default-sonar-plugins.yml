@@ -1,0 +1,11 @@
+---
+sonar_plugin_definition:
+    sonarsource_bintray:
+        - { name: 'sonar-checkstyle-plugin', version: '2.4'}
+        - { name: 'sonar-findbugs-plugin', version: '3.3'}
+        - { name: 'sonar-java-plugin', version: '3.12' }
+        - { name: 'sonar-pmd-plugin', version: '2.5'}
+    #downloads_sonarsource:
+        #- { name: 'sonar-scm-git-plugin', version: '1.1'}
+    #custom_url:
+        #- https://github.com/SonarQubeCommunity/sonar-build-breaker/releases/download/2.0/sonar-build-breaker-plugin-2.0.jar

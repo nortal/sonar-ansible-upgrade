@@ -2,7 +2,7 @@
 
 TESTS_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
-TEST_COMMAND="cd /playbooks && ansible-playbook -i 'localhost,' -c local --extra-vars 'sonar_db_create_backup=false' upgrade-sonar.yml"
+TEST_COMMAND="cd /playbooks && ansible-playbook $@ -i 'localhost,' -c local --extra-vars 'sonar_db_create_backup=false' upgrade-sonar.yml"
 
 # Cleanup leftover containers
 docker rm $(docker ps -a -q)
