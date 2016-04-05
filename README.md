@@ -32,7 +32,7 @@ Ansible role will cover all the rest including MySQL database backup and applyin
 Following default variables have been defined:
 
 | Variable          | Value           | Comment  |
-| ------------------|:---------------:|:--------:|
+| ------------------|-----------------|----------|
 | sonar_user        | sonar | Under what user Sonar will be installed |
 | sonar_home_root   | /home/sonar |  Root path hosting all Sonar versions |
 | sonar_home        | {{ sonar_home_root }}/sonarqube-{{ sonar_target_version }}    | Home path of new Sonar version (upgrade target) |
@@ -46,7 +46,7 @@ Following default variables have been defined:
 Following parameters are **required** to be defined at the playbook:
 
 | Variable              | Comment  |
-| ----------------------|:--------:|
+| ----------------------|----------|
 | sonar_target_version  | Target version to upgrade to |
 | sonar_db_host         | Database hostname |
 | sonar_db_user         | Username for Sonar database |
