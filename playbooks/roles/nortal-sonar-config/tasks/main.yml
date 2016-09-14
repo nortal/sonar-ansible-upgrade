@@ -1,5 +1,5 @@
 ---
-- debug: msg="Running Sonar upgrade to version '{{ mysql_connector_version }}' for user '{{ sonar_user }}' with home root {{ sonar_home_root }}"
+- debug: msg="Running Sonar upgrade to version '{{ sonar_target_version }}' for user '{{ sonar_user }}' with home root {{ sonar_home_root }}"
 
 - name: Create Sonar user
   user: name={{sonar_user}}
