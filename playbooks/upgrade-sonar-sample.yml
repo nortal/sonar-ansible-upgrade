@@ -1,0 +1,16 @@
+- hosts: all
+  user: root
+  vars:
+    # Parent dir for sonar home
+    sonar_home_root: /home/sonar/sonar
+    sonar_target_version: 6.0
+    sonar_db_host: mysql.host
+    sonar_db_port: 3306
+    sonar_db_user:
+    sonar_db_password:
+    crowd_url:
+    crowd_application:
+    crowd_password:
+    sonar_db_create_backup: true
+  roles:
+    - { role: nortal-sonar-config }
