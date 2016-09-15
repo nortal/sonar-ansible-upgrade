@@ -1,6 +1,8 @@
 # Ansible role for Sonar Upgrade
 
-This role has been tested with Sonar upgrade 5.1.12 -> 5.4 on Centos 6 with MySQL database.
+This role has been tested with Sonar upgrade on Centos 6 with MySQL database for following versions:
+* 5.1.12 -> 5.4
+* 5.4 -> 6.0
 
 
 # Upgrade process
