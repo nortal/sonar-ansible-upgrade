@@ -3,6 +3,7 @@
 This role has been tested with Sonar upgrade on Centos 6 with MySQL database for following versions:
 * 5.1.12 -> 5.4
 * 5.4 -> 6.0
+* 6.0 -> 6.4
 
 
 # Upgrade process
