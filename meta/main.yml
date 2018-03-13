@@ -9,10 +9,7 @@ galaxy_info:
   # platforms is a list of platforms, and each platform has a name and a list of versions.
   #
   platforms:
-   - name: Centos
-     versions:
-     - 6
-
+   - name: rhel
 
   galaxy_tags:
     - sonar
