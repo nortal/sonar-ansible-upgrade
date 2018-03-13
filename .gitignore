@@ -1,2 +1,3 @@
 
-playbooks/run-upgrade-sonar.sh
+\.idea
+playbooks/*
