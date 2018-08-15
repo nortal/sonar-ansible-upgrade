@@ -40,22 +40,30 @@
 
 ## Download new version
 - name: Download new Sonarqube version
+  become: yes
   become_user: "{{ sonar_user }}"
   get_url:
     url="https://sonarsource.bintray.com/Distribution/sonarqube/sonarqube-{{ sonar_target_version }}.zip"
     dest="{{ sonar_home_root }}/sonarqube-{{ sonar_target_version }}.zip"
 
-- unarchive: src="{{ sonar_home_root }}/sonarqube-{{ sonar_target_version }}.zip" dest={{ sonar_home_root }} copy=no
+- name: Unarchive Sonarqube
+  become: yes
+  become_user: "{{ sonar_user }}"
+  unarchive: src="{{ sonar_home_root }}/sonarqube-{{ sonar_target_version }}.zip" dest={{ sonar_home_root }} copy=no
 
 - include: backup_database.yml
 
 - include: download_plugins.yml
+  become: yes
   become_user: "{{ sonar_user }}"
 
 - name: Apply sonar.properties config
+  become: yes
+  become_user: "{{ sonar_user }}"
   template: src=sonar.properties dest={{ sonar_home }}/conf/sonar.properties owner="{{ sonar_user }}"
 
-- file: path={{ sonar_home }}/data/es state=absent
+- name: Delete ES index
+  file: path={{ sonar_home }}/data/es state=absent
 
 - name: Reconfigure service script
   template: src=init_d_sonar.sh dest=/etc/init.d/sonar mode="u=rwx,g=rx,o=rx"
