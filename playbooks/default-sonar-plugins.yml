@@ -1,10 +1,8 @@
 ---
 sonar_plugin_definition:
     sonarsource_bintray:
-        - { name: 'sonar-checkstyle-plugin', version: '2.4'}
-        - { name: 'sonar-findbugs-plugin', version: '3.3'}
-        - { name: 'sonar-java-plugin', version: '3.12' }
-        - { name: 'sonar-pmd-plugin', version: '2.5'}
+        - { name: 'sonar-java-plugin', version: '5.6.0.15032' }
+        - { name: 'sonar-javascript-plugin', version: '4.2.1.6529'}
     #downloads_sonarsource:
         #- { name: 'sonar-scm-git-plugin', version: '1.1'}
     #custom_url:
