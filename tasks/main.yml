@@ -21,6 +21,23 @@
 - name: Ensure Sonar is stopped
   service: name=sonar state=stopped
 
+- name: Ensure system settings meet ES requirements
+  pam_limits:
+    domain: "{{ sonar_user }}"
+    limit_type: "{{item.limit_type}}"
+    limit_item: "{{item.limit_item}}"
+    value: "{{item.value}}"
+  with_items:
+    - { limit_type: '-', limit_item: 'nofile', value: 65536 }
+    - { limit_type: '-', limit_item: 'nproc', value: 65536 }
+
+- name: Ensure vm.max_map_count meets ES needs
+  sysctl:
+    name: vm.max_map_count
+    value: 262144
+    state: present
+    reload: yes
+
 ## Download new version
 - name: Download new Sonarqube version
   become_user: "{{ sonar_user }}"
