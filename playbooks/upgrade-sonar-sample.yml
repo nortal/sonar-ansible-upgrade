@@ -3,14 +3,35 @@
   vars:
     # Parent dir for sonar home
     sonar_home_root: /home/sonar/sonar
-    sonar_target_version: 6.4
+    sonar_target_version: 7.3
+
+    # Sonar DB details
     sonar_db_host: mysql.host
     sonar_db_port: 3306
     sonar_db_user:
     sonar_db_password:
+
+    # Should upgrade create DB backup
+    # Useful to disable for execution retries
+    sonar_db_create_backup: true
+
+    # Optional: define Crowd parameters only, when LDAP provider needs to be enabled
     crowd_url:
     crowd_application:
     crowd_password:
-    sonar_db_create_backup: true
+
+    # Optional: define LDAP parameters only, when LDAP provider needs to be enabled
+    ldap_url:
+    ldap_bindDn:
+    ldap_bindPassword:
+    ldap_user_baseDn:
+    ldap_user_request:
+    ldap_user_realNameAttribute:
+    ldap_user_emailAttribute:
+
+    # Additional options for ES server.
+    # bootstrap.system_call_filter=false is required for Kernel older than 3.5
+    search_javaAdditionalOpts: -Dbootstrap.system_call_filter=false
+
   roles:
-    - { role: nortal-sonar-config }
+    - { role: sonar-ansible-upgrade }

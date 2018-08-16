@@ -1,8 +1,8 @@
 ---
 sonar_plugin_definition:
-    sonarsource_bintray:
-        - { name: 'sonar-java-plugin', version: '5.6.0.15032' }
-        - { name: 'sonar-javascript-plugin', version: '4.2.1.6529'}
+    #sonarsource_bintray:
+    #    Sample, don't add bundled plugin updates here. Should be updated via admin web
+    #    - { name: 'sonar-java-plugin', version: '5.6.0.15032' }
     #downloads_sonarsource:
         #- { name: 'sonar-scm-git-plugin', version: '1.1'}
     #custom_url:
