@@ -4,7 +4,8 @@ This role has been tested with Sonar upgrade on Centos 6 with MySQL database for
 * 5.1.12 -> 5.4
 * 5.4 -> 6.0
 * 6.0 -> 6.4
-
+* 6.4 -> 6.7.5
+* 6.7.5 -> 7.3
 
 # Upgrade process
 
@@ -64,4 +65,3 @@ This was developed for use in Nortal so at the moment lacking bit of flexibility
 
     * sonar properties and rest of configuration (wrapper config) templates could be externalized.
     * more database options could be added. Only MySQL at the moment.
-    * requires integration with Atlassian Crowd as SSO provider
